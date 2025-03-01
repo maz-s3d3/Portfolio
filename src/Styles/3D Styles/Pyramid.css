@@ -1,0 +1,67 @@
+ @keyframes rotate {
+    0%{
+        transform: rotate3d(2,1 ,1 , 10deg); 
+    }
+  
+    100%{ 
+           transform: rotate3d(2,1 ,1 , 370deg); 
+    }
+  }
+
+body {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    perspective: 1000px; /* Depth effect */
+}
+
+
+.pyramid {
+    width: 0;
+    height: 0;
+    transform: rotateX(-30deg) rotateY(45deg); /* Rotate pyramid for a better 3D view */
+    transform-style: preserve-3d;
+    animation: rotate linear infinite;
+
+}
+
+/* Creating the triangular faces */
+.face {
+    position: absolute;
+    clip-path: polygon(50% 29%, 0% 100%, 100% 100%); /* Triangle shape */
+    transform-origin: center bottom;
+    box-Shadow: inset 0 2px 15px rgba(255,255,255,0.8), inset 0 -2px 15px rgba(0,0,0,0.4);
+    
+}
+
+/* Front face */
+.front {
+    transform: rotateY(0deg) translateZ(100px) rotateX(45deg);
+}
+
+/* Back face */
+.back {
+    transform: rotateY(180deg) translateZ(100px) rotateX(45deg);
+}
+
+/* Left face */
+.left {
+    transform: rotateY(-90deg) translateZ(100px) rotateX(45deg);
+}
+
+/* Right face */
+.right {
+    transform: rotateY(90deg) translateZ(100px) rotateX(45deg);
+}
+
+/* Base of the pyramid */
+.base {
+    position: absolute;
+    background-color: #000000;
+    transform: rotateX(90deg) ;
+    top:100px;
+    box-Shadow: inset 0 2px 15px rgba(255,255,255,0.8), inset 0 -2px 15px rgba(0,0,0,0.4);
+
+} 
