@@ -7,7 +7,6 @@ const ThemeToggle = ({ fun }) => {
   const [ReverseTheme, setReverseTheme] = useState("white");
 
   useEffect(() => {
-    // Check saved theme or system preference
     const savedTheme = localStorage.getItem("theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
@@ -19,17 +18,16 @@ const ThemeToggle = ({ fun }) => {
   }, []);
 
   useEffect(() => {
-    // Apply the theme class to the document root
     if (isDark) {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "black");
-      setTheme("black"); // Notify parent about the theme change
-      setReverseTheme("white"); // Notify parent about the theme change
+      setTheme("black"); 
+      setReverseTheme("white"); 
     } else {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "white");
-      setTheme("white"); // Notify parent about the theme change
-      setReverseTheme("black"); // Notify parent about the theme change
+      setTheme("white"); 
+      setReverseTheme("black");
 
     }
     fun(Theme)

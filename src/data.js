@@ -4,7 +4,7 @@ import LogooBlack from "./assets/logo-alpha-black.png";
 import Bikes from './assets/Bikes.png'
 import ArganBeauty from './assets/ArganBeauty.png'
 import ToDoList from "./assets/To-do-List.png"
-export const [FirstName,LastName,Profile,Logo,LogoBlack]=["Saad","ES-SAFRYOUY",Me,Logoo,LogooBlack]
+export const [FirstName,LastName,Profile,Logo,LogoBlack,theme,retheme]=["Saad","ES-SAFRYOUY",Me,Logoo,LogooBlack,]
 export const projects=[
     {
     image:ArganBeauty,

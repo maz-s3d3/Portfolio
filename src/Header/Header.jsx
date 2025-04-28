@@ -18,7 +18,7 @@ const Header = ({getApp,FirstName,LastName,Logo,LogoBlack}) => {
   console.log(OtherTheme)
 
   return (
-    <nav className={`w-full sticky h-28 bg-${OtherTheme}`}>
+    <>
       <div
         className={clsx(
           "w-10/12 z-50 mb-3 top-10 mx-auto rounded-full h-14 flex justify-between fixed border transition-colors",
@@ -94,7 +94,7 @@ const Header = ({getApp,FirstName,LastName,Logo,LogoBlack}) => {
           </div>
         </div>
       </div>
-      </nav>
+      </>
   );
 };
 

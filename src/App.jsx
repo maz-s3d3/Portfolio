@@ -4,6 +4,8 @@ import Welcoming from './Body/Welcoming'
 import AboutMe from "./Body/AboutMe/AboutMe";
 import Projects from "./Body/projects";
 import ContactForm from "./Body/contact";
+import Footer from "./Footer/Footer";
+import ParticleScene from "./Particles";
 import { projects,FirstName,LastName,Profile,Logo,LogoBlack } from "./data";
 
 export default function App(){
@@ -24,11 +26,15 @@ export default function App(){
 
     return(
         <div className={`relative p-3 transition-colors bg-${Theme}`}>
+            <ParticleScene reversetheme={OtherTheme}/>
+            <div className="relative z-10">
             <Header FirstName={FirstName} LastName={LastName} getApp={getTheme} Logo={Logo} LogoBlack={LogoBlack}/>
             <Welcoming theme={Theme} reversetheme={OtherTheme} FirstName={FirstName} LastName={LastName}/>
             <AboutMe FirstName={FirstName} LastName={LastName} Profile={Profile} theme={Theme} reversetheme={OtherTheme}/>
             <div className="h-max py-32 flex flex-wrap justify-around"><Projects  theme={Theme} reversetheme={OtherTheme} projects={projects}/></div>
             <ContactForm theme={Theme} reversetheme={OtherTheme}/>
+            <Footer />
+        </div>
         </div>
     )
 }
