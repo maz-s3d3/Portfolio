@@ -31,9 +31,9 @@ const Header = ({ getApp, FirstName, LastName, Logo, LogoBlack }) => {
   // Navigation links
   const navLinks = [
     { name: "Home", url: "/" },
-    { name: "About", url: "/about" },
-    { name: "Work", url: "/work" },
-    { name: "Contact", url: "/contact" }
+    { name: "About", url: "Portfolio/about" },
+    { name: "Work", url: "Portfolio/work" },
+    { name: "Contact", url: "Portfolio/contact" }
   ];
 
   // Social links
