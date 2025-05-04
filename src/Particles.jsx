@@ -13,7 +13,7 @@
      window.addEventListener('resize', resizeCanvas);
      resizeCanvas();  
      // Particle settings
-     const particleCount = 500;
+     const particleCount = 100;
      const particles = [];  
      // Colors that match a modern portfolio
      const colors = ['#4a90e2', '#50e3c2', '#b8e986'];  
@@ -74,7 +74,7 @@
      };
    }, []);
    return (
-     <div className="absolute  inset-0 z-0">
+     <div className="absolute inset-0 z-0">
        <canvas 
          ref={canvasRef} 
          className="w-full h-full"

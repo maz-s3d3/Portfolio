@@ -1,38 +1,42 @@
 import { motion } from "framer-motion";
-import { Code, Database, Layout, Server, Wrench } from "lucide-react";
+import { Code, Database, Layout, Server, Smartphone, Tool } from "lucide-react";
 
 export default function Skills() {
   const skillCategories = [
     {
       title: "Frontend Development",
-      icon: <Layout className="text-stone-200" size={24} />,
-      skills: ["React", "HTML5", "CSS3","JavaScript","Tailwind CSS"]
+      icon: <Layout className="text-blue-500" size={24} />,
+      skills: ["React", "Next.js", "HTML5", "CSS3", "JavaScript", "TypeScript", "Tailwind CSS"]
     },
     {
       title: "Backend Development",
-      icon: <Server className="text-stone-200" size={24} />,
-      skills: ["Node.js", "Express", "Python", "RESTful APIs"]
+      icon: <Server className="text-blue-500" size={24} />,
+      skills: ["Node.js", "Express", "Python", "Django", "RESTful APIs"]
     },
     {
       title: "Database",
-      icon: <Database className="text-stone-200" size={24} />,
-      skills: ["MongoDB", "PostgreSQL", "MySQL"]
+      icon: <Database className="text-blue-500" size={24} />,
+      skills: ["MongoDB", "PostgreSQL", "MySQL", "Firebase"]
     },
-    
+    {
+      title: "Mobile Development",
+      icon: <Smartphone className="text-blue-500" size={24} />,
+      skills: ["React Native", "Flutter", "Mobile-First Design"]
+    },
     {
       title: "Development Tools",
-      icon: < Wrench className="text-stone-200" size={24} />,
-      skills: ["Git", "Docker", "VS Code", "Postman"]
+      icon: <Tool className="text-blue-500" size={24} />,
+      skills: ["Git", "Docker", "VS Code", "Postman", "Webpack"]
     },
     {
       title: "Programming Languages",
-      icon: <Code className="text-stone-200" size={24} />,
-      skills: ["JavaScript", "Python", "C#", "PHP"]
+      icon: <Code className="text-blue-500" size={24} />,
+      skills: ["JavaScript", "Python", "Java", "C++", "PHP"]
     }
   ];
 
   return (
-    <section id="skills" className="bg-transparent bg-opacity-80 backdrop-blur-sm py-16 relative overflow-hidden">
+    <section id="skills" className="bg-black bg-opacity-80 backdrop-blur-md py-16 relative overflow-hidden">
       {/* Cosmic gradient accent line */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-600 via-cyan-400 to-blue-500"></div>
       

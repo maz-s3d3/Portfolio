@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import { Code2, Brain, Rocket } from "lucide-react";
-import Me from "../../assets/Me5.jpg";
 
-export default function AboutMe() {
+export default function About() {
   return (
     <section id="about" className="backdrop-blur-md py-16 relative">
       <div className="container mx-auto px-4">
@@ -10,19 +9,19 @@ export default function AboutMe() {
           About Me
         </h2>
         <p className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-lg mx-auto">
-          Full-stack developer with a passion for building smart, scalable solutions.
+          Passionate developer crafting digital experiences
         </p>
 
         <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
           {/* Left Column - Image */}
           <div className="relative">
-            <div className="rounded-xl overflow-hidden ">
+            <div className="rounded-xl overflow-hidden shadow-2xl">
               <img
-                src={Me}
+                src="/your-image.jpg"
                 alt="Profile"
-                className="max-w-md h-auto object-cover"
+                className="w-full h-auto object-cover"
               />
-              <div className="absolute inset-0 "></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             </div>
           </div>
 
@@ -34,7 +33,7 @@ export default function AboutMe() {
                 <h3 className="text-xl font-bold text-gray-800 dark:text-white">Developer Journey</h3>
               </div>
               <p className="text-gray-600 dark:text-gray-300">
-                I'm ES-SAFRYOUY Saad, a dedicated full-stack developer with strong foundations in both frontend and backend technologies. I’m known for being meticulous, resourceful, and quick to adapt to new challenges. I thrive on solving problems and turning ideas into polished digital experiences.
+                Your journey description here...
               </p>
             </div>
 
@@ -44,7 +43,7 @@ export default function AboutMe() {
                 <h3 className="text-xl font-bold text-gray-800 dark:text-white">Passion for Learning</h3>
               </div>
               <p className="text-gray-600 dark:text-gray-300">
-                I'm a naturally curious person who embraces lifelong learning. Whether it's mastering a new JavaScript framework, experimenting with microcontrollers, or refining clean code practices, I'm always pushing myself to grow. I enjoy diving deep into both technical details and creative solutions.
+                Your learning philosophy here...
               </p>
             </div>
 
@@ -54,7 +53,7 @@ export default function AboutMe() {
                 <h3 className="text-xl font-bold text-gray-800 dark:text-white">Goals & Vision</h3>
               </div>
               <p className="text-gray-600 dark:text-gray-300">
-                My goal is to become a developer who not only writes quality code but also understands user needs and delivers intuitive solutions. I value teamwork, continuous improvement, and building technology that makes a positive impact. I'm focused, resilient, and always ready for the next challenge.
+                Your goals and vision here...
               </p>
             </div>
           </div>

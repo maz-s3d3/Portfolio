@@ -12,8 +12,7 @@ const Welcoming =({theme,reversetheme,FirstName,LastName})=>{
     return(
         
             <div className="relative overflow-hidden w-full h-svh">
-                {/* <div className="absolute left-1/3 blur-sm"><Scene theme={theme} reversetheme={reversetheme}/></div>  */}
-                <h1  className={` absolute mx-10 top-1/3 text-${reversetheme} uppercase text-5xl font-black  z-10 transition-all `}
+                <h1  className={` absolute mx-auto top-1/3 text-${reversetheme} justify-center uppercase text-5xl font-black  z-10 transition-all `}
                 style={Styles.Outline}
                 >Welcome to {FirstName} {LastName}'s portfolio</h1>
             </div>
