@@ -3,9 +3,22 @@ import Logoo from "./assets/logo-alpha.png";
 import LogooBlack from "./assets/logo-alpha-black.png";
 import Bikes from './assets/Bikes.png'
 import ArganBeauty from './assets/ArganBeauty.png'
+import DiamondCar from './assets/DiamondCar.png'
 import ToDoList from "./assets/To-do-List.png"
 export const [FirstName,LastName,Profile,Logo,LogoBlack,theme,retheme]=["Saad","ES-SAFRYOUY",Me,Logoo,LogooBlack,]
 export const projects=[
+    {
+    image:DiamondCar,
+    name:"Diamond Car",
+    description:"The CarRental project is a sleek, React-based web app for renting vehicles, featuring a responsive design with Tailwind CSS, a dynamic contact form, real-time booking, and WhatsApp integration. It offers a user-friendly interface for seamless car rental experiences.",
+    links:[
+        {
+            site:"",
+            git:"https://github.com/chouaiboo/location-voiture"
+        }
+    ],
+    usedLanguages:["ReactJs","PHP","Tailwind"]
+},
     {
     image:ArganBeauty,
     name:"Argan Beauty",

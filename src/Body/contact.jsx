@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Mail, User, MessageCircle, Send, CheckCircle, Clock, MessageSquare } from "lucide-react";
+import { Mail, User, MessageCircle, Send, CheckCircle, Clock, MessageSquare, Phone, MapPin, Linkedin, Github, Twitter } from "lucide-react";
 
 export default function ContactForm({ theme = "gray-800", reversetheme = "white" }) {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -132,6 +132,10 @@ export default function ContactForm({ theme = "gray-800", reversetheme = "white"
     window.open(whatsappUrl, "_blank");
   };
 
+  const openSocialMedia = (url) => {
+    window.open(url, "_blank");
+  };
+
   return (
     <div id="contact" className="backdrop-blur-sm py-16">
       <div className="container mx-auto px-4">
@@ -234,35 +238,78 @@ export default function ContactForm({ theme = "gray-800", reversetheme = "white"
               </div>
             </div>
             
-            {/* Right Column - Contact Options (1/3 of the space) */}
+            {/* Right Column - Contact Options */}
             <div className="lg:w-1/3 flex flex-col space-y-6">
-              {/* Contact Info Card */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 flex-1">
-                <h4 className="font-bold text-lg mb-4 text-gray-800 dark:text-white">Other ways to reach me:</h4>
+              {/* Contact Info Card - Enhanced */}
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                <h4 className="font-bold text-lg mb-4 text-gray-800 dark:text-white flex items-center">
+                  <MessageCircle size={20} className="mr-2 text-blue-500" />
+                  Contact Information
+                </h4>
                 <div className="space-y-4">
-                  <div className="flex items-center text-gray-700 dark:text-gray-300">
+                  <div className="flex items-center text-gray-700 dark:text-gray-300 hover:text-blue-500 transition-all duration-200">
                     <Mail size={18} className="mr-3 text-blue-500" />
-                    <a href="mailto:your.email@example.com" className="hover:underline hover:text-blue-500 transition-colors">your.email@example.com</a>
+                    <a href="mailto:mazozisaad@gmail.com" className="hover:underline">mazozisaad@gmail.com</a>
                   </div>
-                  <div className="flex items-center text-gray-700 dark:text-gray-300">
-                    <User size={18} className="mr-3 text-blue-500" />
-                    <span>OFPPT, Morocco</span>
+                  <div className="flex items-center text-gray-700 dark:text-gray-300 hover:text-blue-500 transition-all duration-200">
+                    <Phone size={18} className="mr-3 text-blue-500" />
+                    <a href="tel:+212600000000" className="hover:underline">+212 60 000 0000</a>
+                  </div>
+                  <div className="flex items-center text-gray-700 dark:text-gray-300 hover:text-blue-500 transition-all duration-200">
+                    <MapPin size={18} className="mr-3 text-blue-500" />
+                    <span>Casablanca, Morocco</span>
                   </div>
                 </div>
               </div>
               
-              {/* WhatsApp Button Card */}
-              <div 
-                onClick={openWhatsApp} 
-                className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 flex items-center cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-              >
-                <div className="bg-green-500 text-white p-4 rounded-full flex items-center justify-center">
-                  <MessageSquare size={24} />
+              {/* Social Media Card - New */}
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                <h4 className="font-bold text-lg mb-4 text-gray-800 dark:text-white flex items-center">
+                  <User size={20} className="mr-2 text-blue-500" />
+                  Connect With Me
+                </h4>
+                <div className="grid grid-cols-2 gap-3">
+                  <button 
+                    onClick={() => openSocialMedia("https://www.linkedin.com/in/saad-es-safryouy-171930176/")}
+                    className="flex items-center justify-center p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-800/50 transition-all duration-200"
+                  >
+                    <Linkedin size={20} className="mr-2 text-blue-600 dark:text-blue-400" />
+                    <span className="text-gray-800 dark:text-gray-200">LinkedIn</span>
+                  </button>
+                  <button 
+                    onClick={() => openSocialMedia("https://github.com/maz-s3d3")}
+                    className="flex items-center justify-center p-3 bg-gray-100 dark:bg-gray-700/30 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600/50 transition-all duration-200"
+                  >
+                    <Github size={20} className="mr-2 text-gray-800 dark:text-gray-300" />
+                    <span className="text-gray-800 dark:text-gray-200">GitHub</span>
+                  </button>
+                  <button 
+                    onClick={() => openSocialMedia("https://x.com/MrDarkn70829936")}
+                    className="flex items-center justify-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-800/40 transition-all duration-200"
+                  >
+                    <Twitter size={20} className="mr-2 text-blue-400" />
+                    <span className="text-gray-800 dark:text-gray-200">Twitter</span>
+                  </button>
+                  <button 
+                    onClick={openWhatsApp}
+                    className="flex items-center justify-center p-3 bg-green-100 dark:bg-green-900/30 rounded-lg hover:bg-green-200 dark:hover:bg-green-800/50 transition-all duration-200"
+                  >
+                    <MessageSquare size={20} className="mr-2 text-green-600 dark:text-green-400" />
+                    <span className="text-gray-800 dark:text-gray-200">WhatsApp</span>
+                  </button>
                 </div>
-                <div className="ml-4">
-                  <h4 className="font-bold text-lg text-gray-800 dark:text-white">WhatsApp Me</h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">Quick response</p>
-                </div>
+              </div>
+              
+              {/* Call to Action Card - New */}
+              <div className="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl shadow-lg p-6 text-white">
+                <h4 className="font-bold text-lg mb-2">Looking for a developer?</h4>
+                <p className="mb-4 text-white/80">I'm available for freelance projects and full-time positions.</p>
+                <button 
+                  onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+                  className="bg-white text-blue-600 font-medium px-4 py-2 rounded-lg w-full hover:bg-blue-50 transition-colors duration-200"
+                >
+                  Let's Talk
+                </button>
               </div>
             </div>
           </div>

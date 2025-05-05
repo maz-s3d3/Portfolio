@@ -13,7 +13,7 @@
      window.addEventListener('resize', resizeCanvas);
      resizeCanvas();  
      // Particle settings
-     const particleCount = 1000;
+     const particleCount = 700;
      const particles = [];  
      // Colors that match a modern portfolio
      const colors = ['#4a90e2', '#50e3c2', '#b8e986'];  

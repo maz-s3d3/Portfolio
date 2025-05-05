@@ -8,32 +8,14 @@ const Header = ({ getApp, FirstName, LastName, Logo, LogoBlack }) => {
   const [scrolled, setScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState("Home");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
 
-  // Handle theme change
-  const getTheme = (theme) => {
-    setTheme(theme);
-    setOtherTheme(theme === "black" ? "white" : "black");
-    getApp(theme);
-  };
-
-  // Handle scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  // Navigation links
+  // Navigation links with IDs that match section IDs in the page
   const navLinks = [
-    { name: "Home", url: "/" },
-    { name: "About", url: "Portfolio/about" },
-    { name: "Work", url: "Portfolio/work" },
-    { name: "Contact", url: "Portfolio/contact" }
+    { name: "Home", url: "#home", id: "home" },
+    { name: "About", url: "#about", id: "about" },
+    { name: "Projects", url: "#projects", id: "projects" },
+    { name: "Contact", url: "#contact", id: "contact" }
   ];
 
   // Social links
@@ -55,26 +37,117 @@ const Header = ({ getApp, FirstName, LastName, Logo, LogoBlack }) => {
     }
   ];
 
+  // Handle theme change
+  const getTheme = (theme) => {
+    setTheme(theme);
+    setOtherTheme(theme === "black" ? "white" : "black");
+    getApp(theme);
+  };
+
+  // Detect current section on scroll
+  useEffect(() => {
+    const sections = {};
+    const sectionElements = document.querySelectorAll('section[id], div[id="home"], div[id="about"], div[id="projects"], div[id="contact"]');
+    
+    // Get all section elements and their positions
+    sectionElements.forEach(section => {
+      sections[section.id] = section.offsetTop;
+    });
+
+    // Handle scroll events
+    const handleScroll = () => {
+      // Basic scroll detection for header styling
+      setScrolled(window.scrollY > 20);
+      
+      // Avoid running the section detection logic during active scrolling animations
+      if (isScrolling) return;
+      
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
+      
+      // Find current section
+      let currentSection = "home"; // Default to home
+      
+      Object.entries(sections).forEach(([id, offset]) => {
+        if (scrollPosition >= offset) {
+          // Find the matching navigation link
+          const matchedLink = navLinks.find(link => link.id === id);
+          if (matchedLink) {
+            currentSection = matchedLink.name;
+          }
+        }
+      });
+      
+      if (currentSection !== activeLink) {
+        setActiveLink(currentSection);
+      }
+    };
+
+    // Add scroll event listener
+    window.addEventListener("scroll", handleScroll);
+    
+    // Initial call to set the initial active section
+    handleScroll();
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isScrolling]);
+
+  // Handle smooth scrolling and prevent detection during programmatic scrolling
+  const handleNavClick = (event, linkName) => {
+    event.preventDefault();
+    const targetId = event.currentTarget.getAttribute('href').replace('#', '');
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      setIsScrolling(true);
+      setActiveLink(linkName);
+      
+      // Close mobile menu if open
+      if (menuOpen) {
+        setMenuOpen(false);
+      }
+      
+      const headerOffset = 100; // Offset to account for header height
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+      
+      // Reset scrolling state after animation completes
+      setTimeout(() => {
+        setIsScrolling(false);
+      }, 1000); // Typical scroll animation duration
+    }
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full mt-10 px-4">
       <div
         className={`
           w-11/12 max-w-7xl mx-auto rounded-full flex justify-between items-center
           transition-all duration-300 py-3
-          ${scrolled ? "shadow-lg" : ""}
-          ${theme === "black" ? "bg-white text-black" : "bg-black text-white"}
+          ${scrolled ? "shadow-lg backdrop-blur-sm" : ""}
+          ${theme === "black" 
+            ? `bg-white ${scrolled ? "bg-opacity-90" : "bg-opacity-80"} text-black` 
+            : `bg-black ${scrolled ? "bg-opacity-90" : "bg-opacity-80"} text-white`}
         `}
       >
         {/* Left Section - Logo & Name */}
         <div className="flex items-center space-x-2 pl-3">
           <a 
-            href="/" 
+            href="#home" 
+            onClick={(e) => handleNavClick(e, "Home")}
             className="flex items-center space-x-3 group transition-transform duration-300 hover:scale-105"
             aria-label="Go to homepage"
           >
             <div className="w-10 h-10 overflow-hidden rounded-full">
               <img
-                className="w-full h-full object-cover transition-opacity duration-300"
+                className="w-full h-full object-cover transition-all duration-300 group-hover:scale-110"
                 src={theme === "black" ? LogoBlack : Logo}
                 alt={`${FirstName} ${LastName} logo`}
               />
@@ -93,7 +166,7 @@ const Header = ({ getApp, FirstName, LastName, Logo, LogoBlack }) => {
               <li key={link.name}>
                 <a
                   href={link.url}
-                  onClick={() => setActiveLink(link.name)}
+                  onClick={(e) => handleNavClick(e, link.name)}
                   className={`
                     relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300
                     ${activeLink === link.name 
@@ -154,10 +227,12 @@ const Header = ({ getApp, FirstName, LastName, Logo, LogoBlack }) => {
         </div>
       </div>
 
+      
+
       {/* Mobile Menu */}
       <div
         className={`
-          md:hidden fixed inset-0 bg-opacity-95 z-40 transition-all duration-300 transform
+          md:hidden fixed inset-0 bg-opacity-95 z-40 transition-all duration-500 transform
           ${menuOpen ? "translate-x-0" : "translate-x-full"}
           ${theme === "black" ? "bg-white text-black" : "bg-black text-white"}
         `}
@@ -168,18 +243,21 @@ const Header = ({ getApp, FirstName, LastName, Logo, LogoBlack }) => {
               <li key={link.name}>
                 <a
                   href={link.url}
-                  onClick={() => {
-                    setActiveLink(link.name);
+                  onClick={(e) => {
+                    handleNavClick(e, link.name);
                     setMenuOpen(false);
                   }}
                   className={`
-                    text-2xl font-medium transition-all duration-300
+                    text-2xl font-medium transition-all duration-300 relative
                     ${activeLink === link.name 
-                      ? "underline underline-offset-8" 
-                      : ""}
+                      ? "font-bold" 
+                      : "opacity-70 hover:opacity-100"}
                   `}
                 >
                   {link.name}
+                  {activeLink === link.name && (
+                    <span className="absolute -bottom-2 left-0 right-0 h-0.5 bg-current transform scale-x-100 transition-transform"></span>
+                  )}
                 </a>
               </li>
             ))}
